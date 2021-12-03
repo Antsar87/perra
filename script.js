@@ -47,6 +47,7 @@ button.addEventListener('click', () => {
 salir.addEventListener('click', () => {
   alert(`Ganaste ${MonedasActual} Monedas`);
   attribute('rm', 0, '');
+  historialMove('Has sacado las monedas');
   salirValidacion();
 });
 
@@ -99,7 +100,7 @@ botonPalanca.addEventListener('click', () => {
     random.length = 0;
   }, 1000);
 });
-///////// Ruleta Math.floor(Math.random() * listaImagenes.length)
+///////// Ruleta
 
 ///Functions
 
