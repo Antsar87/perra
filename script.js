@@ -57,6 +57,7 @@ let num = 0;
 const test = document.querySelectorAll('.image');
 const palanca = document.getElementById('palanca');
 const botonPalanca = document.getElementById('botonPalanca');
+let random = [];
 ///////// Variables
 
 palanca.setAttribute('src', 'images/palancaUP.png');
@@ -86,20 +87,54 @@ botonPalanca.addEventListener('click', () => {
 
   setTimeout(() => {
     palanca.setAttribute('src', 'images/palancaUP.png');
+    let num;
     for (const i of test) {
-      i.setAttribute(
-        'src',
-        `images/${
-          listaImagenes[Math.floor(Math.random() * listaImagenes.length)]
-        }.png`
-      );
+      num = listaImagenes[Math.floor(Math.random() * listaImagenes.length)];
+      random.push(num);
+      i.setAttribute('src', `images/${num}.png`);
       botonPalanca.removeAttribute('disabled');
     }
+    monedasGanar();
+    
+    random.length = 0;
   }, 1000);
 });
 ///////// Ruleta
 
 ///Functions
+
+function monedasGanar() {
+
+  if (random[0] === random[1] && random[1] === random[2]){
+
+    alert('tres iguales')
+    console.log('especial')
+
+  }else if (random[0] === random[1]){
+    alert('Iguales');
+    console.log('uno')
+    console.log(random[0], random[1])
+  }else if(random[0] === random[2]){
+    alert('iguales')
+    console.log('does')
+    console.log(random[0], random[2])
+  }else if(random[1] === random[2]){
+    alert('iguales')
+    console.log('tres')
+    console.log(random[1], random[2])
+  }
+
+  // if (
+  //   (random[0] && random[1] && random[2] === listaImagenes[4]) ||
+  //   (random[0] && random[1] === listaImagenes[4]) ||
+  //   (random[1] && random[2] === listaImagenes[4]) ||
+  //   random[0] === listaImagenes[4] ||
+  //   random[1] === listaImagenes[4] ||
+  //   random[2] === listaImagenes[4]
+  // ) {
+  //   alert('monedas');
+  // }
+}
 
 function attribute(type, number, valueInput) {
   MonedasActual = number;
