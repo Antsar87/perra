@@ -73,6 +73,7 @@ function salirValidacion() {
 let num = 0;
 const test = document.querySelectorAll('.image');
 const palanca = document.getElementById('palanca');
+const botonPalanca = document.getElementById('botonPalanca');
 ///////// Variables
 
 palanca.setAttribute('src', 'images/palancaUP.png');
@@ -82,11 +83,21 @@ for (const i of test) {
   // listaImagenes[Math.floor(Math.random() * listaImagenes.length)]
 }
 
-palanca.addEventListener('click', () => {
+botonPalanca.addEventListener('click', () => {
   palanca.setAttribute('src', 'images/palancaDOWN.png');
+  botonPalanca.setAttribute('disabled', '');
 
   setTimeout(() => {
     palanca.setAttribute('src', 'images/palancaUP.png');
+    for (const i of test) {
+      i.setAttribute(
+        'src',
+        `images/${
+          listaImagenes[Math.floor(Math.random() * listaImagenes.length)]
+        }.png`
+      );
+      botonPalanca.removeAttribute('disabled');
+    }
   }, 1000);
 });
 ///////// Ruleta
