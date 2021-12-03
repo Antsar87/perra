@@ -1,17 +1,40 @@
+///////// Variables
+const boxImages = document.getElementById('images');
+
+const boxPalanca = document.getElementById('palanca');
+
 const input = document.getElementById('input');
+
 const button = document.getElementById('button');
+
 const valorMoneda = document.getElementById('valorMoneda');
+
 const salir = document.getElementById('salir');
 
+const listaImagenes = [
+  'aubergine',
+  'banana',
+  'carrots',
+  'cherries',
+  'dollar',
+  'lemon',
+  'orange',
+  'peach',
+  'potato',
+  'tomato',
+];
+
 let MonedasActual = 0;
+///////// Variables
 
 salirValidacion();
 
+///////// Control De Monedas
 button.addEventListener('click', () => {
   const valorNumero = Number(input.value);
-  
+
   if (valorNumero <= 0) {
-    alert("Ingrese un Numero que no sea Menor o Igual a 0")
+    alert('Ingrese un Numero que no sea Menor o Igual a 0');
     return;
   }
   attribute('set', valorNumero, 0);
@@ -44,3 +67,26 @@ function salirValidacion() {
     salir.removeAttribute('disabled');
   }
 }
+///////// Control De Monedas
+
+///////// Ruleta
+let num = 0;
+const test = document.querySelectorAll('.image');
+const palanca = document.getElementById('palanca');
+///////// Variables
+
+palanca.setAttribute('src', 'images/palancaUP.png');
+
+for (const i of test) {
+  i.setAttribute('src', `images/pingu.png`);
+  // listaImagenes[Math.floor(Math.random() * listaImagenes.length)]
+}
+
+palanca.addEventListener('click', () => {
+  palanca.setAttribute('src', 'images/palancaDOWN.png');
+
+  setTimeout(() => {
+    palanca.setAttribute('src', 'images/palancaUP.png');
+  }, 1000);
+});
+///////// Ruleta
