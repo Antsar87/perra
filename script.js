@@ -47,19 +47,6 @@ salir.addEventListener('click', () => {
   salirValidacion();
 });
 
-function attribute(type, number, valueInput) {
-  MonedasActual = number;
-  input.value = valueInput;
-  valorMoneda.innerHTML = MonedasActual;
-  if (type === 'set') {
-    button.setAttribute('disabled', '');
-    input.setAttribute('disabled', '');
-  } else if (type === 'rm') {
-    button.removeAttribute('disabled');
-    input.removeAttribute('disabled');
-  }
-}
-
 function salirValidacion() {
   if (input.value === '') {
     salir.setAttribute('disabled', '');
@@ -80,12 +67,18 @@ palanca.setAttribute('src', 'images/palancaUP.png');
 
 for (const i of test) {
   i.setAttribute('src', `images/pingu.png`);
-  // listaImagenes[Math.floor(Math.random() * listaImagenes.length)]
 }
 
 botonPalanca.addEventListener('click', () => {
+  if (MonedasActual === 0) {
+    alert('Por favor, introduce monedas');
+    return;
+  }
+
   palanca.setAttribute('src', 'images/palancaDOWN.png');
   botonPalanca.setAttribute('disabled', '');
+
+  attribute('', MonedasActual - 1, '');
 
   setTimeout(() => {
     palanca.setAttribute('src', 'images/palancaUP.png');
@@ -101,3 +94,16 @@ botonPalanca.addEventListener('click', () => {
   }, 1000);
 });
 ///////// Ruleta
+
+function attribute(type, number, valueInput) {
+  MonedasActual = number;
+  input.value = valueInput;
+  valorMoneda.innerHTML = MonedasActual;
+  if (type === 'set') {
+    button.setAttribute('disabled', '');
+    input.setAttribute('disabled', '');
+  } else if (type === 'rm') {
+    button.removeAttribute('disabled');
+    input.removeAttribute('disabled');
+  }
+}
