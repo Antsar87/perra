@@ -95,45 +95,51 @@ botonPalanca.addEventListener('click', () => {
       botonPalanca.removeAttribute('disabled');
     }
     monedasGanar();
-    
+
     random.length = 0;
   }, 1000);
 });
-///////// Ruleta
+///////// Ruleta Math.floor(Math.random() * listaImagenes.length)
 
 ///Functions
 
 function monedasGanar() {
-
-  if (random[0] === random[1] && random[1] === random[2]){
-
-    alert('tres iguales')
-    console.log('especial')
-
-  }else if (random[0] === random[1]){
-    alert('Iguales');
-    console.log('uno')
-    console.log(random[0], random[1])
-  }else if(random[0] === random[2]){
-    alert('iguales')
-    console.log('does')
-    console.log(random[0], random[2])
-  }else if(random[1] === random[2]){
-    alert('iguales')
-    console.log('tres')
-    console.log(random[1], random[2])
+  if (
+    random[0] === listaImagenes[4] &&
+    random[1] === listaImagenes[4] &&
+    random[2] === listaImagenes[4]
+  ) {
+    historialMove('¡Tres MONEDAS! Ganas 10 monedas');
+    attribute('', MonedasActual + 10, '');
+    return;
+  } else if (
+    (random[0] === listaImagenes[4] && random[1] === listaImagenes[4]) ||
+    (random[0] === listaImagenes[4] && random[2] === listaImagenes[4]) ||
+    (random[1] === listaImagenes[4] && random[2] === listaImagenes[4])
+  ) {
+    historialMove('¡Dos MONEDAS! Ganas 4 monedas');
+    attribute('', MonedasActual + 4, '');
+    return;
+  } else if (
+    random[0] === listaImagenes[4] ||
+    random[1] === listaImagenes[4] ||
+    random[2] === listaImagenes[4]
+  ) {
+    historialMove('¡Una MONEDA! Ganas 1 moneda');
+    attribute('', MonedasActual + 1, '');
   }
 
-  // if (
-  //   (random[0] && random[1] && random[2] === listaImagenes[4]) ||
-  //   (random[0] && random[1] === listaImagenes[4]) ||
-  //   (random[1] && random[2] === listaImagenes[4]) ||
-  //   random[0] === listaImagenes[4] ||
-  //   random[1] === listaImagenes[4] ||
-  //   random[2] === listaImagenes[4]
-  // ) {
-  //   alert('monedas');
-  // }
+  if (random[0] === random[1] && random[1] === random[2]) {
+    historialMove('¡Tres Iguales! Ganas 5 monedas');
+    attribute('', MonedasActual + 5, '');
+  } else if (
+    random[0] === random[1] ||
+    random[0] === random[2] ||
+    random[1] === random[2]
+  ) {
+    historialMove('¡Dos Iguales! Ganas 2 monedas');
+    attribute('', MonedasActual + 2, '');
+  }
 }
 
 function attribute(type, number, valueInput) {
