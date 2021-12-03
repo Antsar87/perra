@@ -11,6 +11,8 @@ const valorMoneda = document.getElementById('valorMoneda');
 
 const salir = document.getElementById('salir');
 
+const historial = document.getElementById('historial');
+
 const listaImagenes = [
   'aubergine',
   'banana',
@@ -38,6 +40,7 @@ button.addEventListener('click', () => {
     return;
   }
   attribute('set', valorNumero, 0);
+  historialMove(`Has introducido monedas.`);
   salirValidacion();
 });
 
@@ -47,13 +50,6 @@ salir.addEventListener('click', () => {
   salirValidacion();
 });
 
-function salirValidacion() {
-  if (input.value === '') {
-    salir.setAttribute('disabled', '');
-  } else {
-    salir.removeAttribute('disabled');
-  }
-}
 ///////// Control De Monedas
 
 ///////// Ruleta
@@ -70,6 +66,8 @@ for (const i of test) {
 }
 
 botonPalanca.addEventListener('click', () => {
+  let restaMoneda = MonedasActual - 1;
+
   if (MonedasActual === 0) {
     alert('Por favor, introduce monedas');
     return;
@@ -78,7 +76,13 @@ botonPalanca.addEventListener('click', () => {
   palanca.setAttribute('src', 'images/palancaDOWN.png');
   botonPalanca.setAttribute('disabled', '');
 
-  attribute('', MonedasActual - 1, '');
+  attribute('', restaMoneda, '');
+  historialMove('Gastas una moneda.');
+
+  if (restaMoneda === 0) {
+    salirValidacion();
+    attribute('rm', 0, '');
+  }
 
   setTimeout(() => {
     palanca.setAttribute('src', 'images/palancaUP.png');
@@ -95,6 +99,8 @@ botonPalanca.addEventListener('click', () => {
 });
 ///////// Ruleta
 
+///Functions
+
 function attribute(type, number, valueInput) {
   MonedasActual = number;
   input.value = valueInput;
@@ -105,5 +111,20 @@ function attribute(type, number, valueInput) {
   } else if (type === 'rm') {
     button.removeAttribute('disabled');
     input.removeAttribute('disabled');
+  }
+}
+
+function historialMove(mensaje) {
+  var node = document.createElement('li');
+  var textnode = document.createTextNode(mensaje);
+  node.appendChild(textnode);
+  historial.appendChild(node);
+}
+
+function salirValidacion() {
+  if (input.value === '') {
+    salir.setAttribute('disabled', '');
+  } else {
+    salir.removeAttribute('disabled');
   }
 }
