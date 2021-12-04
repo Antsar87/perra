@@ -1,4 +1,4 @@
-///////// Variables
+///////// Variable
 const boxImages = document.getElementById('images');
 
 const boxPalanca = document.getElementById('palanca');
